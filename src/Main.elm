@@ -142,7 +142,7 @@ viewBlogPost idx post =
                 , button [ type_ "button", class "expandToggle", onClick (ToggleCollapse idx) ]
                     [ text (viewCollapseLabel post.textContent.collapsed) ]
                 ]
-            , viewBlogTextContent idx post.textContent
+            , viewBlogTextContent post.textContent
             ]
         ]
 
@@ -161,8 +161,8 @@ viewNavButton t =
     a [ class "navButton", href "https://google.com" ] [ text t ]
 
 
-viewBlogTextContent : idx -> BlogTextContent -> Html msg
-viewBlogTextContent idx content =
+viewBlogTextContent : BlogTextContent -> Html msg
+viewBlogTextContent content =
     if content.collapsed then
         div [] []
 
@@ -175,7 +175,10 @@ viewBlogTextContent idx content =
 
 samplePost : BlogPost
 samplePost =
-    BlogPost "Oct 8" "Gad Zooks!" (BlogTextContent sampleText (BlogImage "Red Panda" sampleImgSrc) False)
+    BlogPost
+        "Oct 8"
+        "Gad Zooks!"
+        (BlogTextContent sampleText (BlogImage "Red Panda" sampleImgSrc) False)
 
 
 sampleImgSrc : String
